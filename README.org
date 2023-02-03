@@ -1,0 +1,28 @@
+#+title: Readme
+
+* Introduction
+Sample project on how to do data extraction/visualization in Arbor.
+
+Setup like this
+#+begin_src sh
+bash setup-env.sh
+source env/bin/activate
+#+end_src
+
+To run, ensure the venv is active and then
+#+begin_src sh
+python main.py
+#+end_src
+should produce a HDF5 file named ~results.h5~ with the following layout
+
+- cell id
+  - probe id
+    - quantity
+      - time: N floats, one per per sample timepoint
+      - x: M floats, one per sample location
+      - y: M floats, one per sample location
+      - z: M floats, one per sample location
+      - samples
+        - 0: N floats, one per per sample timepoint
+        - ...
+        - M-1: N floats, one per per sample timepoint
