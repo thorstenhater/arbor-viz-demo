@@ -157,11 +157,17 @@ for (gid, pid), quantity, hdl in hdls:
     #  * a list of samples as 1d np.arrays of length N
     #  * the sample time as one np.array of length N
     # Now start dumping all to disk.
-    gp = fd.create_group(f'{gid}/{pid}/{quantity}')
-    gp.create_dataset('time', data=times)
-    gp.create_dataset('x', data=xs)
-    gp.create_dataset('y', data=ys)
-    gp.create_dataset('z', data=zs)
+    gp = fd.create_group(f'{gid}/{pid}')
+    gp.attrs['quantity'] = quantity
+    t = gp.create_dataset('time', data=times)
+    t.attrs['unit'] = 'ms'
+    x = gp.create_dataset('x', data=xs)
+    y = gp.create_dataset('y', data=ys)
+    z = gp.create_dataset('z', data=zs)
+    x.attrs['unit'] = 'um'
+    y.attrs['unit'] = 'um'
+    z.attrs['unit'] = 'um'
     sp = gp.create_group('samples')
+    sp.attrs['unit'] = 'mV'
     for ix, data in enumerate(samples):
-        sp.create_dataset(f'{ix}', data=data)
+        u = sp.create_dataset(f'{ix}', data=data)

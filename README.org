@@ -17,12 +17,16 @@ should produce a HDF5 file named ~results.h5~ with the following layout
 
 - cell id
   - probe id
-    - quantity
-      - time: N floats, one per per sample timepoint
-      - x: M floats, one per sample location
-      - y: M floats, one per sample location
-      - z: M floats, one per sample location
-      - samples
-        - 0: N floats, one per per sample timepoint
-        - ...
-        - M-1: N floats, one per per sample timepoint
+    - time: N floats, one per per sample timepoint
+    - x: M floats, one per sample location
+    - y: M floats, one per sample location
+    - z: M floats, one per sample location
+    - samples
+      - 0: N floats, one per per sample timepoint
+      - ...
+      - M-1: N floats, one per per sample timepoint
+
+Thus to obtain the samples for cell ~c~, probe ~p~ on the second point, one would
+index ~/c/p/samples/1~.
+
+Units and measured quantities are attached to the respective groups as attributes.
